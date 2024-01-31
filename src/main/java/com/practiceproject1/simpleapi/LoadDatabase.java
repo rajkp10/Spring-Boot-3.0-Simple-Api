@@ -16,7 +16,6 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(StudentRepository studentRepositoty, LaptopRepository laptopRepository){
         return args -> {
-
         };
     }
 }

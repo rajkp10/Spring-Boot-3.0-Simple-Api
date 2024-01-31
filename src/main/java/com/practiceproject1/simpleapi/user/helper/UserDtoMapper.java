@@ -1,5 +1,6 @@
 package com.practiceproject1.simpleapi.user.helper;
 
+import com.practiceproject1.simpleapi.student.Student;
 import com.practiceproject1.simpleapi.user.User;
 import org.springframework.stereotype.Component;
 
