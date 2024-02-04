@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static com.practiceproject1.simpleapi.user.Roles.ADMIN;
+import static com.practiceproject1.simpleapi.user.Roles.STUDENT;
 
 @Configuration
 @EnableWebSecurity
@@ -40,13 +41,13 @@ public class SecurityConfig {
 //                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth->auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/api/v1/**").hasRole(ADMIN.name())
+                        .requestMatchers("/api/v1/users/**").hasRole(ADMIN.name())
                         .anyRequest()
                         .authenticated()
                 )
+                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

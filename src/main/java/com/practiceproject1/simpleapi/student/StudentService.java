@@ -2,8 +2,10 @@ package com.practiceproject1.simpleapi.student;
 
 import com.practiceproject1.simpleapi.laptop.Laptop;
 import com.practiceproject1.simpleapi.laptop.LaptopRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +26,9 @@ public class StudentService {
     public List<Student> getAllStudents(){
         return studentRepository.findAll();
     }
-    public Optional<Student> findByFirstName(String firstName){
-        return studentRepository.findByFirstName(firstName);
+    public Student findByFirstName(String firstName){
+        var student = studentRepository.findByFirstName(firstName).orElseThrow(()->new EntityNotFoundException("No user with name"));
+        return student;
     }
 
     public Student createStudent(Student student){

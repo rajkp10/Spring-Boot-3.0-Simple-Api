@@ -17,12 +17,12 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/")
     public ResponseEntity<?> getAllSubjects(){
         return new ResponseEntity<>(subjectService.getAllSubjects(), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/")
     public ResponseEntity<?> createSubject(@RequestBody Subject subject){
         return new ResponseEntity<>(subjectService.createSubject(subject), HttpStatus.CREATED);
     }
